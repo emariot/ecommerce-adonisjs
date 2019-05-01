@@ -16,7 +16,7 @@ class UserImageFkSchema extends Schema {
   }
 
   down() {
-    this.table("user_image_fks", table => {
+    this.table("users", table => {
       // reverse alternations
       table.dropForeign("image_id");
     });

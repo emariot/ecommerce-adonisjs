@@ -12,16 +12,15 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use("Factory");
-
 const Role = use("Role");
 const User = use("App/Models/User");
 
 class ClientSeeder {
   async run() {
     const role = await Role.findBy("slug", "client");
-    const Clients = await Factory.model("App/Models/User").createMany(30);
+    const clients = await Factory.model("App/Models/User").createMany(10);
     await Promise.all(
-      client.map(async client => {
+      clients.map(async client => {
         await client.roles().attach([role.id]);
       })
     );
@@ -34,7 +33,7 @@ class ClientSeeder {
     });
 
     const adminRole = await Role.findBy("slug", "admin");
-    await user.roles().attach([role.id]);
+    await user.roles().attach([adminRole.id]);
   }
 }
 

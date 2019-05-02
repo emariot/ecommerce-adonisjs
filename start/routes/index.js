@@ -20,5 +20,8 @@ Route.get("/", () => {
   return { greeting: "Hello world in JSON" };
 }).as("home");
 
+//importa as rotas
+
 require("./auth");
 require("./admin");
+require("./client");

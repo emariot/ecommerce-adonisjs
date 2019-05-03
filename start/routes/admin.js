@@ -11,7 +11,7 @@ Route.group(() => {
   /**
    * Categories and Product resource routes
    */
-  Route.resource("categories", "CategoryesController").apiOnly();
+  Route.resource("categories", "CategoryController").apiOnly();
   Route.resource("products", "ProductController").apiOnly();
   Route.resource("coupons", "CouponController").apiOnly();
   Route.resource("orders", "OrderController").apiOnly();

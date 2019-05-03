@@ -31,7 +31,6 @@ class CategoryController {
 
     return response.send(catgories);
   }
-
   /**
    * Create/save a new category.
    * POST categories
@@ -52,7 +51,6 @@ class CategoryController {
       });
     }
   }
-
   /**
    * Display a single category.
    * GET categories/:id
@@ -66,7 +64,6 @@ class CategoryController {
     const category = await Category.findOrFail(id);
     return response.send(category);
   }
-
   /**
    * Update category details.
    * PUT or PATCH categories/:id
@@ -85,7 +82,6 @@ class CategoryController {
 
     return response.send(category);
   }
-
   /**
    * Delete a category with id.
    * DELETE categories/:id

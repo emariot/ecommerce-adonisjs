@@ -109,11 +109,9 @@ class ProductController {
       await product.delete();
       return response.status(200).send();
     } catch (error) {
-      return response
-        .status(500)
-        .send({
-          message: "Não foi possível deletar este produtos, tente mais tarde"
-        });
+      return response.status(500).send({
+        message: "Não foi possível deletar este produtos, tente mais tarde"
+      });
     }
   }
 }

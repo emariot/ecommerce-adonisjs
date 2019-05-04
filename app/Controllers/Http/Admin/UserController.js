@@ -25,8 +25,8 @@ class UserController {
 
     if (name) {
       query.where("name", "ILIKE", `%${name}%`);
-      query.orwhere("surname", "ILIKE", `%${surname}%`);
-      query.orwhere("email", "ILIKE", `%${email}%`);
+      query.orWhere("surname", "ILIKE", `%${name}%`);
+      query.orWhere("email", "ILIKE", `%${name}%`);
     }
 
     const users = await query.paginate(pagination.page, pagination.limit);
@@ -45,7 +45,7 @@ class UserController {
     try {
       const userData = request.only([
         "name",
-        "username",
+        "surname",
         "email",
         "password",
         "image_id"
@@ -88,7 +88,7 @@ class UserController {
     const user = await User.findOrFail(id);
     const userData = request.only([
       "name",
-      "username",
+      "surname",
       "email",
       "password",
       "image_id"

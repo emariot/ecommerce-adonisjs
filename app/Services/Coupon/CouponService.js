@@ -1,4 +1,5 @@
 "use strict";
+//Camada de Serviços
 
 class CouponService {
   constructor(model, trx = null) {

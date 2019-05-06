@@ -54,7 +54,7 @@ const manage_single_upload = async (file, path = null) => {
 
 const manage_multiple_upload = async (fileJar, path = null) => {
   path = path ? path : Helpers.publicPath("uploads");
-  let succrsses = [],
+  let successes = [],
     errors = [];
 
   await Promise.all(
@@ -67,7 +67,7 @@ const manage_multiple_upload = async (fileJar, path = null) => {
       });
       //Verifica se ele foi movido
       if (file.moved()) {
-        succrsses.push(file);
+        successes.push(file);
       } else {
         errors.push(file.error());
       }

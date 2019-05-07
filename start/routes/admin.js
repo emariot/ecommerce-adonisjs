@@ -30,7 +30,12 @@ Route.group(() => {
     .validator(new Map([[["orders.store"], ["Admin/StoreOrder"]]]));
 
   Route.resource("images", "ImageController").apiOnly();
-  Route.resource("users", "UserController").apiOnly();
+  Route.resource("users", "UserController")
+    .apiOnly()
+    .validator([
+      [["users.store"], ["Admin/StoreUser"]],
+      [["users.update"], ["Admin/StoreUser"]]
+    ]);
 })
   .prefix("v1/admin")
   .namespace("Admin")

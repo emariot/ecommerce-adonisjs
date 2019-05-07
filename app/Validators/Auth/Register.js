@@ -10,6 +10,18 @@ class AuthRegister {
       password: "required|confirmed"
     };
   }
+
+  get messages() {
+    return {
+      "name.required": "O nome é obrigatório",
+      "surname.required": "O sobrenome é obrigatório",
+      "email.required": "O email é obrigatório",
+      "email.email": "Email inválido",
+      "email.unique": "Este email já existe",
+      "password.required": "A senha é obrigatória",
+      "password.confirmed": "As senhas não combinam"
+    };
+  }
 }
 
 module.exports = AuthRegister;

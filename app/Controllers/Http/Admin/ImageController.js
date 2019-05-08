@@ -10,7 +10,7 @@
 
 const Image = use("App/Models/Image");
 const { manage_single_upload, manage_multiple_upload } = use("App/Helpers");
-const fs = use('fs')
+const fs = use("fs");
 
 class ImageController {
   /**
@@ -21,7 +21,7 @@ class ImageController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async index({ response, pagination }) {
+  async index({ request, response, pagination }) {
     const images = await Image.query()
       .orderBy("id", "DESC")
       .paginate(pagination.page, pagination.limit);
@@ -134,24 +134,21 @@ class ImageController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy({ params:{id}, request, response }) {
-    const image = await Image.findOrFail(id)
+  async destroy({ params: { id }, request, response }) {
+    const image = await Image.findOrFail(id);
 
     try {
-
-      let filepath = Helpers.pulicPath(`upload/${image.path}`)
+      let filepath = Helpers.pulicPath(`upload/${image.path}`);
       //fs é um modulo do NodeJs
-      await fs.unlink(filepath, err => {
-        if(!err){
-          await image.delete()
-        }
-      })
+      fs.unlinkSync(filepath);
+      await image.delete();
 
-      return response.status(204).send()
+      return response.status(204).send();
     } catch (error) {
       return response.satuts(400).send({
-        message: 'Não foi possível deletar a imagem no momento. Tente mais tarde!'
-      })    
+        message:
+          "Não foi possível deletar a imagem no momento. Tente mais tarde!"
+      });
     }
   }
 }

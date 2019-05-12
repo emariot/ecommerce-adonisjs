@@ -2,6 +2,9 @@
 
 const BumblebeeTransformer = use("Bumblebee/Transformer");
 const UserTransformer = use("App/Transformers/Admin/UserTransformer");
+const OrderItemTransformer = use("App/Transformers/Admin/OrderItemTransformer");
+const DiscountTransformer = use("App/Transformers/Admin/DiscountTransformer");
+const CouponTransformer = use("App/Transformers/Admin/CouponTransformer");
 
 /**
  * OrderTransformer class
@@ -17,11 +20,14 @@ class OrderTransformer extends BumblebeeTransformer {
     order = order.toJSON();
     return {
       id: order.id,
-      status: status.id,
+      status: order.status,
       date: order.created_at,
       total: order.total ? parseFloat(order.total.toFixed(2)) : 0,
+
       qty_items:
-        order.__meta__ && order.__meta__.qty_items ? order.qty_item : 0,
+        order.__meta__ && order.__meta__.qty_items
+          ? order.__meta__.qty_items
+          : 0,
 
       discount:
         order.__meta__ && order.__meta__.discount ? order.__meta__.discount : 0,
@@ -34,13 +40,13 @@ class OrderTransformer extends BumblebeeTransformer {
     return this.item(order.getRelated("user"), UserTransformer);
   }
   includeItems(order) {
-    return this.item(order.getRelated("items"), OrderItemTransformer);
+    return this.collection(order.getRelated("items"), OrderItemTransformer);
   }
-  includeCupouns(order) {
-    return this.item(order.getRelated("coupons"), CouponTransformer);
+  includeCoupons(order) {
+    return this.collection(order.getRelated("coupons"), CouponTransformer);
   }
   includeDiscount(order) {
-    return this.item(order.getRelated("discounts"), DiscountTransformer);
+    return this.collection(order.getRelated("discounts"), DiscountTransformer);
   }
 }
 

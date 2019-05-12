@@ -12,7 +12,7 @@ class OrderService {
       return false;
     }
     await this.model.items().delete(this.trx);
-    await this.model.items().createMany(items, this.trx);
+    return await this.model.items().createMany(items, this.trx);
   }
 
   async updateItems(items) {

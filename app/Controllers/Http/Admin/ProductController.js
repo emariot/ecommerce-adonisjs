@@ -5,7 +5,7 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const Product = use("App/Models/Product");
-const Transformer = use("App/TRansformers/Admin/ProductTRansformer");
+const Transformer = use("App/Transformers/Admin/ProductTransformer");
 
 /**
  * Resourceful controller for interacting with products
